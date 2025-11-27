@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>محل السبيعي للمواد الغذائية</title>
+<style>
+body {
+    font-family: "Tahoma", sans-serif;
+    direction: rtl;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+.header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+}
+h2 { margin: 0 0 20px; color:#128c7e; }
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.product {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.product:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.15);}
+.product img { width: 100%; border-radius: 12px; margin-bottom:10px; }
+.price { color: #128c7e; font-weight: bold; margin-top: 5px; font-size: 16px; }
+.small-btn {
+    display: block;
+    background:#25d366;
+    color:white;
+    padding:10px;
+    margin-top:12px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:16px;
+    cursor:pointer;
+    transition: 0.2s;
+}
+.small-btn:hover {
+    background:#128c7e;
+    transform: scale(1.05);
+}
+.offer-section {
+    background: #fff8e1;
+    border: 1px solid #f1e2a3;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+.offer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:#fffbdd;
+    padding:12px 15px;
+    margin-bottom:10px;
+    border-radius:10px;
+    font-size:18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.offer-item b { color:#d84315; }
+.map {
+    margin-top: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.map h2 { margin-bottom:10px; color:#128c7e; }
+.open-link {
+    display:block;
+    text-align:center;
+    background:#128c7e;
+    color:white;
+    padding:15px;
+    margin:20px 0;
+    border-radius:15px;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.2s;
+}
+.open-link:hover { background:#25d366; }
+@media screen and (max-width:600px){
+    .products { grid-template-columns: 1fr; }
+    .header img { width:100px; height:100px;}
+}
+input.qty {
+    width:60px;
+    text-align:center;
+    padding:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <img src="https://i.imgur.com/NYSKwuE.jpeg" alt="لوغو السبيعي">
+    <h1>محل السبيعي للمواد الغذائية</h1>
+    <p>خدمة توصيل سريعة داخل المنطقة</p>
+</div>
+
+<div class="container">
+    <h2>المنتجات المتوفرة</h2>
+    <div class="products" id="products"></div>
+
+    <div class="offer-section">
+        <h2>عروض اليوم 🔥</h2>
+        <div class="offer-item"><span>  لبن المراعي</span> <b>9 ريال</b></div>
+        <div class="offer-item"><span>بيبسي  حبات</span> <b>13 ريال</b></div>
+        <div class="offer-item"><span>سكر 5 كجم</span> <b>11 ريال</b></div>
+        <div class="offer-item"><span>أرز 10 كجم</span> <b>28 ريال</b></div>
+    </div>
+
+    <a href="https://share.google/TZSFo0kGqC7N93J4N" target="_blank" class="open-link">🌐 افتح موقع المحل</a>
+
+    <div style="text-align:center; margin-top:20px;">
+        <button onclick="sendOrder()" class="small-btn">📩 إرسال الطلب عبر واتساب</button>
+    </div>
+
+    <div class="map">
+        <h2>موقع محل السبيعي</h2>
+        <h3>بريدة / القصيم / الشقة السفلى</h3>
+       
+    </div>
+</div>
+
+<script>
+// مصفوفة المنتجات
+const products = [
+    {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+        {name:"أرز بسمتي 5 كجم", price:"18 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    {name:"أرز الفخامة 5 كجم", price:"30 ريال", img:"https://i.imgur.com/NYSKwuE.jpeg"},
+    
+];
+
+// مصفوفة السلة
+let cart = [];
+
+// توليد المنتجات
+const productsContainer = document.getElementById("products");
+products.forEach((product,index)=>{
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+        <img src="${product.img}" alt="${product.name}">
+        <p>${product.name}</p>
+        <p class="price">السعر: ${product.price}</p>
+        <p>الكمية: <input type="number" class="qty" id="qty-${index}" value="1" min="1"></p>
+        <button onclick='addToCart(${JSON.stringify(product)}, document.getElementById("qty-${index}").value)' class="small-btn">🛒 أضف إلى السلة</button>
+    `;
+    productsContainer.appendChild(div);
+});
+
+// إضافة المنتج للسلة
+function addToCart(product, quantity){
+    cart.push({name: product.name, price: product.price, quantity: quantity});
+    alert(`${product.name} تمت إضافته إلى السلة (الكمية: ${quantity})!`);
+}
+
+// إرسال الطلب عبر واتساب
+function sendOrder(){
+    if(cart.length === 0){
+        alert("السلة فارغة!");
+        return;
+    }
+
+    let message = "أريد طلب المنتجات التالية:\n";
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price} × ${item.quantity}\n`;
+    });
+
+    let whatsappURL = "https://wa.me/966542681418?text=" + encodeURIComponent(message);
+    window.open(whatsappURL, "_blank");
+}
+</script>
+
+</body>
+</html>
